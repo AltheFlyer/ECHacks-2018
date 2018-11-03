@@ -5,8 +5,6 @@ int soilVal = 0;
 int soilPin = 2;
 int soilPower = 7;
 int counter = 0;
-float interval = 1000;
-bool setInterval = false;
 
 void setup() {
   // put your setup code here, to run once:
@@ -15,12 +13,11 @@ void setup() {
 
   pinMode(soilPower, OUTPUT);
   digitalWrite(soilPower,LOW);
-  while(Serial.available() == 0){}
-  interval = Serial.parseFloat() * 1000;
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
+  if (counter == 2000) {
     Serial.print("Soil:");
     Serial.println(readSoil());
     counter = 0;
@@ -38,8 +35,12 @@ void loop() {
     if (rawLight > 100) {
       Serial.println("BRIGHT");
     }
+
+    
+  }
   
-  delay(interval);
+  delay(10);
+  counter += 10;
 }
 int readSoil(){
   digitalWrite(soilPower, HIGH);
