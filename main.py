@@ -6,7 +6,3 @@ app = Flask(__name__)
 @app.route('/intro')
 def index():
     return "HELLO WORLD!"
-
-#@app.route("/static/<string:s>")
-#def nope(s="no"):
-#    return "Very clever..."
