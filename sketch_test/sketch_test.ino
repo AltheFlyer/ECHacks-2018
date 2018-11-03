@@ -5,6 +5,7 @@ int soilVal = 0;
 int soilPin = 2;
 int soilPower = 7;
 int counter = 0;
+int ledOut = 4;
 
 void setup() {
   // put your setup code here, to run once:
@@ -13,6 +14,9 @@ void setup() {
 
   pinMode(soilPower, OUTPUT);
   digitalWrite(soilPower,LOW);
+
+  pinMode(ledOut, OUTPUT);
+  digitalWrite(ledOut, LOW);
 }
 
 void loop() {
