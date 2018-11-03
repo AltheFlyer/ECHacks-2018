@@ -6,6 +6,8 @@ light_set = []
 soil_set = []
 temp_set = []
 
+
+
 while True:
     code = reader.readline()
     print(code)
