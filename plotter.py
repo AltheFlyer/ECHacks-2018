@@ -51,9 +51,11 @@ for count, data in enumerate(['soil', 'temperature', 'light']):
         count_set.append(c)
 
     plt.subplot(3, 1, count + 1)
-    plt.title(data)
+    plt.title(data.capitalize())
     plt.xlabel("index")
     plt.ylabel(data)
+    if data == 'soil':
+        plt.ylabel("Soil Humidity")
     if data == 'temperature':
         plt.ylabel("temperature (C)")
 
