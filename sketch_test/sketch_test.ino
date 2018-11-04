@@ -1,11 +1,11 @@
 #include <Stepper.h>
+#define LED 2
 int serialSensor = 0;
 int serialTemp = 1;
 int soilVal = 0;
-int soilPin = 2;
+int soilPin = 4;
 int soilPower = 7;
 int counter = 0;
-int ledOut = 4;
 float interval = 1000;
 bool setInterval = false;
 int threshold = 500;
@@ -16,10 +16,13 @@ void setup() {
   Serial.begin(9600);
 
   pinMode(soilPower, OUTPUT);
-  digitalWrite(soilPower,LOW);
+  digitalWrite(soilPower, LOW);
 
-  pinMode(ledOut, OUTPUT);
-  digitalWrite(ledOut, LOW);
+  pinMode(LED, OUTPUT);
+ 
+  while(Serial.available() == 0){}
+  threshold = Serial.parseInt();
+  
   while(Serial.available() == 0){}
   interval = Serial.parseFloat() * 1000;
 }
@@ -46,9 +49,9 @@ void loop() {
     }
 
     if (soilMoist < threshold){
-      digitalWrite(ledOut, HIGH);
+      digitalWrite(LED, LOW);
     } else {
-      digitalWrite(ledOut, LOW);
+      digitalWrite(LED, HIGH);
     }
   
   delay(interval);
