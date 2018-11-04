@@ -8,6 +8,7 @@ int counter = 0;
 int ledOut = 4;
 float interval = 1000;
 bool setInterval = false;
+int threshold = 500;
 
 void setup() {
   // put your setup code here, to run once:
@@ -26,7 +27,8 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
     Serial.print("Soil:");
-    Serial.println(readSoil());
+    int soilMoist = readSoil();
+    Serial.println(soilMoist);
     counter = 0;
     int rawLight = analogRead(serialSensor);
     int rawTemp = analogRead(serialTemp);
@@ -41,6 +43,12 @@ void loop() {
   
     if (rawLight > 100) {
       Serial.println("BRIGHT");
+    }
+
+    if (soilMoist < threshold){
+      digitalWrite(ledOut, HIGH);
+    } else {
+      digitalWrite(ledOut, LOW);
     }
   
   delay(interval);
